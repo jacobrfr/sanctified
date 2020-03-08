@@ -30,27 +30,27 @@ class SanctifiedActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.prayer_navigation_menu_item -> {
-                val fragment = FragmentPrayer.Companion.newInstance()
+                val fragment = FragmentPrayer.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.praise_navigation_menu_item -> {
-                val fragment = FragmentPraise.Companion.newInstance()
+                val fragment = FragmentPraise.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.read_navigation_menu_item -> {
-                val fragment = FragmentRead.Companion.newInstance()
+                val fragment = FragmentRead.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.plans_navigation_menu_item -> {
-                val fragment = FragmentPlans.Companion.newInstance()
+                val fragment = FragmentPlans.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.memory_navigation_menu_item -> {
-                val fragment = FragmentMemory.Companion.newInstance()
+                val fragment = FragmentMemory.newInstance()
                 addFragment(fragment)
                 return@OnNavigationItemSelectedListener true
             }
@@ -60,20 +60,20 @@ class SanctifiedActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView<ActivitySanctifiedBinding>(this, com.google.apps.sanctified.R.layout.activity_sanctified)
+        setContentView<ActivitySanctifiedBinding>(this, R.layout.activity_sanctified)
 
         content = findViewById(R.id.content)
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        val fragment = FragmentRead.Companion.newInstance()
+        val fragment = FragmentRead.newInstance()
         addFragment(fragment)
     }
 
     private fun addFragment(fragment: Fragment) {
         supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.content, fragment, fragment.javaClass.simpleName)
+                .replace(R.id.nav_host, fragment, fragment.javaClass.simpleName)
                 .commit()
     }
 }
