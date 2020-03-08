@@ -19,17 +19,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/prayer_navigation_menu_item"
-        android:title="Prayer"/>
+        android:title="Prayer"
+        android:icon="@drawable/ic_baseline_backup_24"/>
     <item
         android:id="@+id/praise_navigation_menu_item"
-        android:title="Praise"/>
+        android:title="Praise"
+        android:icon="@drawable/ic_baseline_cloud_done_24"/>
     <item
         android:id="@+id/read_navigation_menu_item"
-        android:title="Read"/>
+        android:title="Read"
+        android:icon="@drawable/ic_baseline_menu_book_24"/>
     <item
         android:id="@+id/plans_navigation_menu_item"
-        android:title="Plans"/>
+        android:title="Plans"
+        android:icon="@drawable/ic_baseline_check_24"/>
     <item
         android:id="@+id/memory_navigation_menu_item"
-        android:title="Memory"/>
+        android:title="Memory"
+        android:icon="@drawable/ic_baseline_highlight_24"/>
 </menu>
