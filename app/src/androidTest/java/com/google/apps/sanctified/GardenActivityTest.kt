@@ -28,7 +28,7 @@ import org.junit.Test
 class GardenActivityTest {
 
     @Rule @JvmField
-    var activityTestRule = ActivityTestRule(com.google.apps.sanctified.GardenActivity::class.java)
+    var activityTestRule = ActivityTestRule(com.google.apps.sanctified.SanctifiedActivity::class.java)
 
     @Test fun clickAddPlant_OpensPlantList() {
         // Given that no Plants are added to the user's garden

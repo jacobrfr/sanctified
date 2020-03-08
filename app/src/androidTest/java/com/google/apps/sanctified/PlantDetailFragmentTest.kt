@@ -45,7 +45,7 @@ class PlantDetailFragmentTest {
 
     @Rule
     @JvmField
-    val activityTestRule = ActivityTestRule(com.google.apps.sanctified.GardenActivity::class.java)
+    val activityTestRule = ActivityTestRule(com.google.apps.sanctified.SanctifiedActivity::class.java)
 
     @Before
     fun jumpToPlantDetailFragment() {

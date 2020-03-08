@@ -22,9 +22,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.apps.sanctified.databinding.ActivityGardenBinding
+import com.google.apps.sanctified.databinding.ActivitySanctifiedBinding
 
-class GardenActivity : AppCompatActivity() {
+class SanctifiedActivity : AppCompatActivity() {
     private var content: FrameLayout? = null
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -60,7 +60,7 @@ class GardenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView<ActivityGardenBinding>(this, com.google.apps.sanctified.R.layout.activity_sanctified)
+        setContentView<ActivitySanctifiedBinding>(this, com.google.apps.sanctified.R.layout.activity_sanctified)
 
         content = findViewById(R.id.content)
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
