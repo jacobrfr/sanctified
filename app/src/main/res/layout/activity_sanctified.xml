@@ -15,26 +15,24 @@
   ~ limitations under the License.
   -->
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/plant_list"
+        <fragment
+            android:id="@+id/nav_host"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingEnd="@dimen/card_side_margin"
-            android:paddingStart="@dimen/card_side_margin"
-            android:paddingTop="@dimen/header_margin"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-            app:spanCount="@integer/grid_columns"
-            tools:context="com.google.apps.sanctified.com.google.apps.sunflower.GardenActivity"
-            tools:listitem="@layout/list_item_plant"/>
-
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_garden"/>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            app:menu="@menu/bottom_navigation_menu"/>
     </FrameLayout>
 </layout>
