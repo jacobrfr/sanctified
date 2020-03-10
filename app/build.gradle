@@ -34,7 +34,12 @@ android {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
+    kapt "com.android.databinding:compiler:$rootProject.gradleVersion"
     kapt "androidx.room:room-compiler:$rootProject.roomVersion"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
     implementation "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
