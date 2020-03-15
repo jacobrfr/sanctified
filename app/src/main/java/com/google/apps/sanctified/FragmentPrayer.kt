@@ -1,11 +1,12 @@
 package com.google.apps.sanctified
 
-import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.PopupMenu
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.apps.sanctified.adapters.OnItemClickListener
 import com.google.apps.sanctified.adapters.PrayerAdapter
 import com.google.apps.sanctified.data.Prayer
 import com.google.apps.sanctified.databinding.FragmentPrayerBinding
@@ -21,10 +23,14 @@ import com.google.apps.sanctified.utilities.SwipeToDeleteCallback
 import com.google.apps.sanctified.viewmodels.PrayerListViewModel
 import kotlinx.android.synthetic.main.fragment_prayer.view.*
 
-class FragmentPrayer : Fragment(), FragmentPrayerCreateDialog.PrayerCreateDialogListener{
+class FragmentPrayer :
+        Fragment(),
+        FragmentPrayerCreateDialog.PrayerCreateDialogListener,
+        OnItemClickListener {
     private val viewModel: PrayerListViewModel by viewModels {
         InjectorUtils.providePrayerListViewModelFactory(this)
     }
+    private lateinit var rv: RecyclerView
     private lateinit var adapter: PrayerAdapter
 
     companion object {
@@ -44,17 +50,19 @@ class FragmentPrayer : Fragment(), FragmentPrayerCreateDialog.PrayerCreateDialog
         val binding = FragmentPrayerBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        view.prayer_fab.setOnClickListener { showPrayerCreateDialog() }
-        view.prayer_recycler_view.layoutManager = LinearLayoutManager(
-                context, LinearLayoutManager.VERTICAL, false)
-        view.prayer_recycler_view.adapter = PrayerAdapter()
+        rv = binding.prayerRecyclerView
+        adapter = PrayerAdapter(this)
+        rv.adapter = adapter
+        rv.layoutManager = LinearLayoutManager(
+            context,
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+
+        binding.prayerFab.setOnClickListener { showPrayerCreateDialog() }
 
         context ?: return view
 
-        val rv = binding.prayerRecyclerView
-
-        adapter = PrayerAdapter()
-        rv.adapter = adapter
         subscribeUi(adapter)
 
         ItemTouchHelper(object : SwipeToDeleteCallback(context!!) {
@@ -64,11 +72,26 @@ class FragmentPrayer : Fragment(), FragmentPrayerCreateDialog.PrayerCreateDialog
         return view
     }
 
-    private fun deletePrayer(viewHolder: RecyclerView.ViewHolder) {
+    override fun onItemClicked(view: View) {
+        if (view.id == R.id.prayer_options) {
+            val popup = PopupMenu(view.context, view)
+            popup.inflate(R.menu.prayer_options_menu)
+            popup.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.prayer_menu_delete -> deletePrayer(rv.findContainingViewHolder(view)!!)
+                    else -> false
+                }
+            }
+            popup.show()
+        }
+    }
+
+    private fun deletePrayer(viewHolder: RecyclerView.ViewHolder): Boolean {
         val position = viewHolder.adapterPosition
         val prayer: Prayer = adapter.getPrayer(position)
         viewModel.deletePrayer(prayer)
         showUndoSnackbar(prayer)
+        return true
     }
 
     private fun showUndoSnackbar(prayer: Prayer) {

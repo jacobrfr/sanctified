@@ -39,8 +39,20 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:flow_verticalBias="0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/prayer_options"
                 app:flow_horizontalBias="0"/>
+            <TextView
+                android:id="@+id/prayer_options"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:text="@string/optionDots"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textAppearance="?android:textAppearanceLarge"
+                style="@style/listItemDimensions"
+                app:layout_constraintTop_toBottomOf="@id/prayer_item_date"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
