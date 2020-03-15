@@ -5,6 +5,8 @@ import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.apps.sanctified.databinding.ActivitySanctifiedBinding
 
@@ -50,9 +52,9 @@ class SanctifiedActivity : AppCompatActivity() {
         val navigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
-        navigation.selectedItemId = R.id.read_navigation_menu_item
-        val fragment = FragmentRead.newInstance()
-        addFragment(fragment)
+        if (savedInstanceState == null) {
+            navigation.selectedItemId = R.id.read_navigation_menu_item
+        }
     }
 
     private fun addFragment(fragment: Fragment) {

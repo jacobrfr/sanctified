@@ -18,6 +18,6 @@ class PrayerListViewModelFactory(
             modelClass: Class<T>,
             handle: SavedStateHandle
     ) : T {
-        return PrayerListViewModel(repository, handle) as T
+        return PrayerListViewModel(repository) as T
     }
 }

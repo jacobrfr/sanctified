@@ -4,26 +4,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.apps.sanctified.data.Prayer
 import com.google.apps.sanctified.databinding.PrayerRecyclerViewItemBinding
 import kotlinx.android.synthetic.main.prayer_recycler_view_item.view.*
 
-class PrayerAdapter : ListAdapter<Prayer, RecyclerView.ViewHolder>(PlantDiffCallback()) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : RecyclerView.ViewHolder {
+
+class PrayerAdapter : ListAdapter<Prayer, ViewHolder>(PlantDiffCallback()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : ViewHolder {
         return PrayerViewHolder(PrayerRecyclerViewItemBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false)
+            LayoutInflater.from(parent.context), parent, false)
         )
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val prayer = getItem(position)
         (holder as PrayerViewHolder).bind(prayer)
     }
 
+    fun getPrayer(position: Int) : Prayer {
+        return getItem(position)
+    }
+
     class PrayerViewHolder(
-            private val binding: PrayerRecyclerViewItemBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
+        private val binding: PrayerRecyclerViewItemBinding
+    ) : ViewHolder(binding.root) {
         fun bind(prayer: Prayer) {
             binding.apply {
                 root.prayer_item_subject.text = prayer.subject

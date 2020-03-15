@@ -5,13 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.apps.sanctified.adapters.PrayerAdapter
 import com.google.apps.sanctified.databinding.FragmentPrayerBinding
 import com.google.apps.sanctified.utilities.InjectorUtils
+import com.google.apps.sanctified.utilities.SwipeToDeleteCallback
 import com.google.apps.sanctified.viewmodels.PrayerListViewModel
 import kotlinx.android.synthetic.main.fragment_prayer.view.*
 import kotlinx.android.synthetic.main.prayer_create_dialog.*
@@ -45,9 +49,17 @@ class FragmentPrayer : Fragment(), FragmentPrayerCreateDialog.PrayerCreateDialog
 
         context ?: return view
 
+        val rv = binding.prayerRecyclerView
+
         val adapter = PrayerAdapter()
-        binding.prayerRecyclerView.adapter = adapter
+        rv.adapter = adapter
         subscribeUi(adapter)
+
+        ItemTouchHelper(object : SwipeToDeleteCallback(requireContext()) {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                viewModel.deletePrayer(adapter.getPrayer(viewHolder.adapterPosition))
+            }
+        }).attachToRecyclerView(rv)
 
         return view
     }
