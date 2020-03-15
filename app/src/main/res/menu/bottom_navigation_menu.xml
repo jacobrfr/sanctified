@@ -1,40 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  ~ Copyright 2020 Google LLC
-  ~
-  ~ Licensed under the Apache License, Version 2.0 (the "License");
-  ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
-  ~
-  ~     https://www.apache.org/licenses/LICENSE-2.0
-  ~
-  ~ Unless required by applicable law or agreed to in writing, software
-  ~ distributed under the License is distributed on an "AS IS" BASIS,
-  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  ~ See the License for the specific language governing permissions and
-  ~ limitations under the License.
-  -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/prayer_navigation_menu_item"
-        android:title="Prayer"
+        android:title="@string/prayer_title"
         android:icon="@drawable/ic_baseline_backup_24"/>
     <item
         android:id="@+id/praise_navigation_menu_item"
-        android:title="Praise"
+        android:title="@string/praise_title"
         android:icon="@drawable/ic_baseline_cloud_done_24"/>
     <item
         android:id="@+id/read_navigation_menu_item"
-        android:title="Read"
+
+        android:title="@string/read_title"
         android:icon="@drawable/ic_baseline_menu_book_24"/>
     <item
         android:id="@+id/plans_navigation_menu_item"
-        android:title="Plans"
+        android:title="@string/plans_title"
         android:icon="@drawable/ic_baseline_check_24"/>
     <item
         android:id="@+id/memory_navigation_menu_item"
-        android:title="Memory"
+        android:title="@string/memory_title"
         android:icon="@drawable/ic_baseline_highlight_24"/>
 </menu>

@@ -14,7 +14,7 @@ class PrayerListViewModel internal constructor(
 
     fun addPrayer(subject: String, description: String) {
         viewModelScope.launch {
-            prayerRepository.createPrayer(subject, description)
+            prayerRepository.addPrayer(subject, description)
         }
     }
 

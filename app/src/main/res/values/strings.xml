@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="prayer_title">Prayer</string>
+    <string name="undo_snackbar_text">Prayer deleted</string>
+    <string name="undone_snackbar_text">UNDO</string>
+    <string name="praise_title">Praise</string>
+    <string name="read_title">Read</string>
+    <string name="plans_title">Plans</string>
+    <string name="memory_title">Memory</string>
+</resources>

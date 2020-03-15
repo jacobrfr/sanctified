@@ -3,7 +3,7 @@ package com.google.apps.sanctified.data
 class PrayerRepository private constructor(private val prayerDao: PrayerDao) {
     fun getPrayers() = prayerDao.getPrayers()
 
-    suspend fun createPrayer(prayerSubject: String, prayerDescription: String) {
+    suspend fun addPrayer(prayerSubject: String, prayerDescription: String) {
         val prayer = Prayer(prayerSubject, prayerDescription)
         prayerDao.insertPrayer(prayer)
     }
